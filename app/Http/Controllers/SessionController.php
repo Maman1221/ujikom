@@ -19,31 +19,10 @@ class SessionController extends Controller
     {
         return view('sesi/index');
     }
-    public function login (Request $request){
-        Session::flash('email',$request->email);
 
-        $request->validate ([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        [
-            'email' => 'Email Wajib Diisi',
-            'password' => 'Password Wajib Diisi',
-        ];
-
-        $infologin = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-        if (Auth::attempt($infologin)) {
-            return redirect('dasboard')->with('success','Berhasil Login');
-        } else {
-            return redirect('sesi')->with('success','Username dan Password Tidak Sesuai');
-        }
-    }
     public function logout(){
         Auth::logout();
-        return redirect('sesi')->with('success','Berhasil Logout');
+        return redirect('/login')->with('success','Berhasil Logout');
     }
     /**
      * Show the form for creating a new resource.

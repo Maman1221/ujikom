@@ -25,7 +25,11 @@
 <body class="bg-gradient-primary">
 
     <div class="container">
-
+@if ($errors->any())
+@foreach ($errors->all() as $e )
+{{$e}}
+@endforeach
+@endif
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -41,6 +45,8 @@
                                         <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
                                     </div>
                                     <form class="user" action="/sesi/login" method="POST">
+                                        @csrf
+                                        @method('POST')
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                             name="email" value="{{Session::get('email')}}"
