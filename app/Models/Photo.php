@@ -9,5 +9,5 @@ class Photo extends Model
 {
     use HasFactory;
     protected $table ='photos';
-    protected $fillable = ['judul_foto','deskripsi_foto','tanggal_upload','Lokasi_file','user_id'];
+    protected $guarded = ['id'];
 }

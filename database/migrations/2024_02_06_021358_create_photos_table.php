@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('judul_foto');
             $table->text('deskripsi_foto');
             $table->date('tanggal_upload');
-            $table->string('Lokasi_file');
-            $table->integer('user_id');
+            $table->string('Lokasi_file')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

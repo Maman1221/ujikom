@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Photo</div>
+        <div class="sidebar-brand-text mx-3">Gallery</div>
     </a>
 
     <!-- Divider -->
@@ -15,14 +15,15 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{route('dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+            <span>Album</span></a>
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link" href="{{route('album.index')}}">
+        <a class="nav-link" href="{{route('Photo.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Album</span></a>
+            <span>Photo</span></a>
     </li>
+
     <!-- Divider -->
 
     </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Photo;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
 
@@ -15,7 +16,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $item = Photo::all();
+        return view('Photo.index', [
+            'Photo' => $item]);
     }
 
     /**
@@ -34,9 +37,14 @@ class PhotoController extends Controller
      * @param  \App\Http\Requests\StorePhotoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePhotoRequest $request)
+    public function store(Request $r)
     {
-        //
+        // @dd($r);
+        $data = $r->all();
+        $data['judul_foto'] = $r->file('judul_foto')->store('Photo', 'public');
+        Photo::create($data);
+
+        return redirect()->back();
     }
 
     /**
@@ -79,8 +87,20 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function delete($id)
     {
-        //
+        // Find the photo by ID
+        $photo = Photo::find($id);
+
+        // Check if the photo exists
+        if (!$photo) {
+            return redirect()->back()->with('error', 'Photo not found.');
+        }
+
+        // Delete the photo
+        $photo->delete();
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Photo deleted successfully.');
     }
 }

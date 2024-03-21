@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Photo</title>
+    <title>Gallery</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Galeri</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Album</h1>
                     </div>
                     @yield('content')
                     <!-- Content Row -->

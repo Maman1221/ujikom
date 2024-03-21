@@ -14,9 +14,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $item = Album::all();
-        return view('albums.index', [
-            'album' => $item]);
+
     }
 
     /**
@@ -37,11 +35,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $data['image'] = $request->file('image')->store('album', 'public');
-        Album::create($data);
 
-        return redirect()->back();
     }
 
     /**
