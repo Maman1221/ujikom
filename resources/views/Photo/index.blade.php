@@ -1,3 +1,5 @@
+@extends('layouts/app')
+@section('content')
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,7 +12,7 @@
   <body class="bg-light">
 
     <div>
-        <a href="{{ route('dashboard') }}" class="btn btn-secondary"><-- Back to Dashboard</a>
+        {{-- <a href="{{ route('dashboard') }}" class="btn btn-secondary"><-- Back to Dashboard</a> --}}
     </div>
     <div class="container py-5">
       <div class="d-flex align-items-center justify-content-between mb-5">
@@ -29,6 +31,25 @@
                     <h5 class="card-title">{{ $item->tanggal_upload }}</h5>
                     <p class="mb-8 text-secondary">{{ $item->deskripsi_foto }}</p>
                 </div>
+
+                @foreach ($item->photoComments as $c )
+{{$c->content}}
+@endforeach
+
+                <!-- Form Komentar -->
+                <form method="POST" action="{{ route('komentar.store', ['photo' => $item->id]) }}">
+                    @csrf
+                    <div class="mb-3">
+                        <textarea name="content" rows="3" placeholder="Tambahkan komentar" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Komentar</button>
+                </form>
+
+            @if ($item->komentar_photos)
+            @foreach ($item->komentar_photos as $comment)
+           <p>{{ $comment->user->name }}: {{ $comment->content }}</p>
+       @endforeach
+     @endif
 
                 <form action="{{ route('delete_photo', ['id' => $item->id]) }}" method="POST" style="display: inline-block">
                     @csrf
@@ -62,7 +83,7 @@
                     </div>
 
                     <div class="mb-3">
-                      <label for="image">Judul Photo</label>
+                      <label for="image">Gambar</label>
                       <input type="file" accept="image/*" name="judul_foto" id="image" class="form-control">
                     </div>
                     <div class="mb-3">
@@ -79,3 +100,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
+
+@endsection

@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('komentar_photos', function (Blueprint $table) {
+        Schema::create('komentar', function (Blueprint $table) {
             $table->id();
-            $table->integer('foto_id');
-            $table->integer('user_id');
-            $table->text('isi_komentar');
-            $table->date('tanggal_komentar');
+            $table->foreignId('foto_id')->constrained('photos')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('content');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('komentar_photos');
+        Schema::dropIfExists('komentar');
     }
 };

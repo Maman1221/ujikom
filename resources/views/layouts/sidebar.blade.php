@@ -15,7 +15,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{route('dashboard')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Album</span></a>
+            <span>Dasboard</span></a>
     </li>
 
     <li class="nav-item active">

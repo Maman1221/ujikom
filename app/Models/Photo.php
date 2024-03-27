@@ -10,4 +10,7 @@ class Photo extends Model
     use HasFactory;
     protected $table ='photos';
     protected $guarded = ['id'];
+    public function photoComments(){
+        return $this->hasMany(Komentar::class,'foto_id','id');
+    }
 }
