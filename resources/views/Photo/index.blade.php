@@ -9,6 +9,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Photo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+
+
+.detailBox {
+    width:100%;
+    border:1px solid #bbb;
+}
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+.commentBox .form-group:first-child, .actionBox .form-group:first-child {
+    width:80%;
+}
+.commentBox .form-group:nth-child(2), .actionBox .form-group:nth-child(2) {
+    width:18%;
+}
+.actionBox .form-group * {
+    width:100%;
+}
+.taskDescription {
+    margin-top:10px 0;
+}
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:200px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:10px;
+}
+    </style>
   </head>
 
   <body class="bg-light">
@@ -33,33 +97,66 @@
                     <h5 class="card-title">{{ $item->tanggal_upload }}</h5>
                     <p class="mb-8 text-secondary">{{ $item->deskripsi_foto }}</p>
                 </div>
+<div class="container">
+    {{--  --}}
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Comment Box
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <div class="detailBox">
+                    <div class="titleBox">
+                      <label>Comments</label>
 
-                @foreach ($item->photoComments as $c )
-{{$c->content}}
-@endforeach
-
-                <!-- Form Komentar -->
-                <form method="POST" action="{{ route('komentar.store', ['photo' => $item->id]) }}">
-                    @csrf
-                    <div class="mb-3">
-                        <textarea name="content" rows="3" placeholder="Tambahkan komentar" class="form-control"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success">Komentar</button>
-                </form>
 
-            @if ($item->komentar_photos)
-            @foreach ($item->komentar_photos as $comment)
-           <p>{{ $comment->user->name }}: {{ $comment->content }}</p>
-       @endforeach
-     @endif
+                    <div class="actionBox">
+                        <ul class="commentList">
+                            @foreach ($item->photoComments as $c )
+                            <li>
+                                <div class="commentText">
+                                    <span class="date sub-text">  {{ auth()->User()->name}}</span>  <p class=""> {{$c->content}}.</p>
 
+                                </div>
+                            </li>
+
+                                                        @endforeach
+
+                        </ul>
+                        <form method="POST" action="{{ route('komentar.store', ['photo' => $item->id]) }}" class="form-inline" role="form">
+
+                            <div class="form-group">
+                                @csrf
+                                <input class="form-control" name="content" type="text" placeholder="Your comments" />
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-default">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    {{--  --}}
+
+    <br>
                 <form action="{{ route('delete_photo', ['id' => $item->id]) }}" method="POST" style="display: inline-block">
                     @csrf
                     @method('DELETE')
 
                     <button class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Ingin Menghapus Photo ?')">Delete</button>
                 </form>
+<br>
 
+            </div>
             </div>
         </div>
         @endforeach
