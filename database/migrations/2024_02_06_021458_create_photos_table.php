@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tanggal_upload');
             $table->string('Lokasi_file')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('album_id')->constrained('albums')->onDelete('cascade');
             $table->timestamps();
         });
     }

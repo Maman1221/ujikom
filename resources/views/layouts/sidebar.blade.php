@@ -18,11 +18,18 @@
             <span>Dasboard</span></a>
     </li>
 
-    <li class="nav-item active">
+
+    {{-- <li class="nav-item active">
         <a class="nav-link" href="{{route('Photo.index')}}">
             <i class="fas fa-fw fa-table"></i>
             <span>Photo</span></a>
-    </li>
+    </li> --}}
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('albums.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Album</span></a>
+    </li>\
 
     <!-- Divider -->
 

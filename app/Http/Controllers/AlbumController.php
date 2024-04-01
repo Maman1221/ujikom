@@ -2,84 +2,96 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
 use Illuminate\Http\Request;
+use App\Models\Album;
 
 class AlbumController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar album.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-
+        $albums = Album::all();
+        return view('albums.index', compact('albums'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat album baru.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('albums.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan album yang baru dibuat.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-
+        $v = $r->validate([
+            "nama_album" => 'required',
+            "deskripsi" => 'required',
+            "user_id" => 'required',
+            ]);
+            $v['tanggal_dibuat'] = now();
+            Album::create($v);
+            return redirect('/albums');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan form untuk mengedit album.
      *
-     * @param  int  $id
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function edit(Album $album)
     {
-        //
+        return view('albums.edit', compact('album'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * Mengupdate album yang sudah ada.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Album $album)
     {
-        //
+        $request->validate([
+            'nama_album' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'tanggal_dibuat' => 'nullable|date',
+        ]);
+
+        $album->update([
+            'nama_album' => $request->nama_album,
+            'deskripsi' => $request->deskripsi,
+            'tanggal_dibuat' => $request->tanggal_dibuat,
+        ]);
+
+        return redirect()->route('albums.index')
+                         ->with('success','Album berhasil diperbarui.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus album.
      *
-     * @param  int  $id
+     * @param  \App\Models\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Album $id)
     {
-        //
+// @dd($id);
+$id->delete();
+return redirect()->back();
     }
 }

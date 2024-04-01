@@ -1,3 +1,5 @@
+{{-- @dd($Photo->albumPhotos) --}}
+{{-- @dd($Photo) --}}
 @extends('layouts/app')
 @section('content')
 <!doctype html>
@@ -23,7 +25,7 @@
       </div>
 
       <div class="row">
-        @foreach ($Photo as $item)
+        @foreach ($Photo->albumPhotos as $item)
         <div class="col-md-4">
             <div class="card border-0 md-3">
                 <img src="{{asset('storage/' . $item->judul_foto) }}" alt="" class="card-img-top">
@@ -77,8 +79,10 @@
             @method('POST')
             <input type="hidden" name="tanggal_upload" value="{{now()}}">
             <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
+
+            <input type="hidden" name="album_id" value="{{$Photo->id}}">
                     <div class="mb-3">
-                      <label for="title">Judul Photo</label>
+                      <label for="title">Judul Photo  </label>
                       <input type="text" name="title" id="title" class="form-control">
                     </div>
 

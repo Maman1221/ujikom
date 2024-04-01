@@ -19,12 +19,15 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register']);
 
 //Photo
-route::get('/Photo', [PhotoController::class, 'index'])->name('Photo.index');
+route::get('/detail/album/{id}', [PhotoController::class, 'index'])->name('Photo.index');
 route::post('/Photo', [PhotoController::class, 'store'])->name('Photo.store');
 Route::delete('/photos/{id}', [PhotoController::class, 'delete'])->name('delete_photo');
 Route::post('/photos/{photo}/comments', [KomentarController::class, 'store'])->name('komentar.store');
 
 //Album
+route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
 
+Route::get('/album/new', [AlbumController::class, 'create']);
+Route::post('/album/new_', [AlbumController::class, 'store']);
 
-
+Route::get('/album/delete/{id}', [AlbumController::class, 'destroy']);

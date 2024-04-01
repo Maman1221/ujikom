@@ -6,6 +6,7 @@ use App\Models\Photo;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePhotoRequest;
 use App\Http\Requests\UpdatePhotoRequest;
+use App\Models\Album;
 
 class PhotoController extends Controller
 {
@@ -14,11 +15,11 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Album $id)
     {
-        $item = Photo::all();
+
         return view('Photo.index', [
-            'Photo' => $item]);
+            'Photo' => $id]);
     }
 
     /**
@@ -40,7 +41,7 @@ class PhotoController extends Controller
      */
     public function store(Request $r)
     {
-        // @dd($r);
+        // @dd($r->album_id);
         $data = $r->all();
         $data['judul_foto'] = $r->file('judul_foto')->store('Photo', 'public');
         Photo::create($data);
