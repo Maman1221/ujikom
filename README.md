@@ -1,5 +1,5 @@
 
-# Photopie dexGram
+# Galery Maman
 
 
 ## Tentang Website
@@ -12,41 +12,47 @@ Untuk Fitur masih minim:
 - sign up
 - log in
 - log out
-- multiuser
 - add poto
 - add album
-- edit profile
 - add comment
-- edit comment
 - delete comment
-- like
 - dll
 
 ## Tampilan Website
 
 -Login
-![Screenshot (3)](https://github.com/drixki/dexGram/assets/111831906/3f9a94b5-b81a-4761-9f63-f4a541ede1c9)
+![Screenshot (220)](https://github.com/Maman1221/ujikom/assets/140770094/3a86473a-1084-46a0-ab59-65629ec2f7a5)
+
+![Screenshot (219)](https://github.com/Maman1221/ujikom/assets/140770094/3e2e4bd7-c1ea-4873-b428-ba926ba28692)
 
 -Dashboard
-![Screenshot (4)](https://github.com/drixki/dexGram/assets/111831906/d00267fa-37f2-4212-8885-c20dbdd3e05f)
+![Screenshot (221)](https://github.com/Maman1221/ujikom/assets/140770094/478e248b-e369-4ed8-8d95-aacf901bd0a1)
+
+![Screenshot (222)](https://github.com/Maman1221/ujikom/assets/140770094/4d790ff1-17b4-4969-9aa2-c90ac9359e0a)
+
+-Tambah Album
+![Screenshot (223)](https://github.com/Maman1221/ujikom/assets/140770094/6d3e29fb-ce0c-4906-82b9-7cec0a971387)
+
+![Screenshot (224)](https://github.com/Maman1221/ujikom/assets/140770094/ac37afbb-3db3-43c3-bc19-86b61b3279f1)
 
 -Tambah Foto
-![Screenshot (5)](https://github.com/drixki/dexGram/assets/111831906/5d50aec4-5865-453b-8a9f-4ebaba8bd881)
+![Screenshot (225)](https://github.com/Maman1221/ujikom/assets/140770094/50f72d9c-eaf0-4088-a3f1-5431d6541de1)
+
+![Screenshot (226)](https://github.com/Maman1221/ujikom/assets/140770094/a00ec446-a84e-4037-b901-146e746f6ce3)
 
 ## ERD, Relasi dan UML Use Case
 
 - ERD
 - 
-![jawa](https://github.com/drixki/dexGram/assets/111831906/56d550c3-da4b-4df4-8214-0528b7868262)
+![ERD](https://github.com/Maman1221/ujikom/assets/140770094/1771c6c9-274a-42e2-94d2-fe1d78e6914a)
 
 - Relasi
 
-![Screenshot (7)](https://github.com/drixki/dexGram/assets/111831906/6c7a4f70-1353-4e4e-85e3-9633074090a5)
-
+![Image](https://github.com/Maman1221/ujikom/assets/140770094/7f490808-024b-4676-ac50-0cd7b07de162)
 
 - UML
 
-![UML GALLERY drawio](https://github.com/Kuro192/UKK_Gallery/assets/105845443/871c2ea4-c579-42e9-944d-47cf0e83c5ff)
+![UML](https://github.com/Maman1221/ujikom/assets/140770094/f756209b-8ea8-4f45-82fa-c91c010234ae)
 
 
 ## Prasyaratan
@@ -58,7 +64,7 @@ Untuk Fitur masih minim:
 ## Instalasi
 1. Clone Repository
 ```
-https://github.com/Kuro192/UKK_Gallery.git
+https://github.com/Maman1221/ujikom.git
 ```
 
 2. Install Composer
@@ -70,9 +76,9 @@ atau
 composer update
 ```
 
-3. Copy .Env
+3. Ganti .Env.example menjadi 
 ```
-copy .env.example .env
+.env
 ```
 
 4. Setting database di .env
